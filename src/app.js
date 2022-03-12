@@ -2,7 +2,7 @@
 
 // const express = require('express');
 import express from "express";
-import cors from 'cors';
+import cors from 'cors';// cấp quyền truy cập
 import productRouter from '../routes/product';
 //morgan dùng để thông báo khi thực hiện get hay post ... dùng npm i morgan
 import morgan from "morgan";
