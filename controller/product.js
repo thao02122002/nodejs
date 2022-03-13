@@ -4,7 +4,7 @@
 //     ];
 import mongoose from "mongoose";
  //1 khởi tạo model
- const Product = mongoose.model('Product', {name: String});
+ const Product = mongoose.model('Product', {name: String, price: Number, desc: String, categoryId: Number});
 
 
 //Danh sách sp
@@ -22,9 +22,20 @@ export const list = async (req, res) => {
         })
     }
 }
-export const read = (req, res) => {
+//lấy 1 sp theo id chưa đc
+export const read = async (req, res) => {
+
+ try {
+        const product = await Product.findOne({ _id: req.params.id}).exec();
+        res.json(product);
+        
+    } catch (error) {
+        res.status(400).json({
+            message: "Không tìm thấy sp"
+        })
+    }
     
-    res.json(product.find(item => item.id === +req.params.id));
+    // res.json(product.find(item => item.id === +req.params.id));
 }
 
 //Thêm sp
@@ -45,11 +56,32 @@ export const create = async (req, res) => {
 }
 
 //Xóa sp
-export const remove = (req, res) => {
-    res.json(product.filter(item => item.id !== +req.params.id));
+export const remove = async (req, res) => {
+    try {
+        const product = await Product.findOneAndDelete({ _id: req.params.id}).exec();
+        res.json(product);
+        
+    } catch (error) {
+        res.status(400).json({
+            message: "Xóa"
+        })
+    }
+
+    // res.json(product.filter(item => item.id !== +req.params.id));
 }
 
 
-export const update = (req, res) => {
-    res.json(product.map(item => item.id == req.params.id ? req.body : item));
+export const update = async (req, res) => {
+    const condition = { id: req.params.id}
+    const update = req.body;
+     try {
+        const product = await Product.findOneAndUpdate({condition, update}).exec();
+        res.json(product);
+        
+    } catch (error) {
+        res.status(400).json({
+            message: "Xóa"
+        })
+    }
+    // res.json(product.map(item => item.id == req.params.id ? req.body : item));
 }
