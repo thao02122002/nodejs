@@ -4,7 +4,7 @@
 //     ];
 import mongoose from "mongoose";
  //1 khởi tạo model
- const Product = mongoose.model('Product', {name: String, price: Number, desc: String, categoryId: Number});
+ const Product = mongoose.model('Product', {name: String, price: Number, desc: String, quantity: Number ,categoryId: Number});
 
 
 //Danh sách sp
@@ -22,7 +22,7 @@ export const list = async (req, res) => {
         })
     }
 }
-//lấy 1 sp theo id chưa đc
+//lấy 1 sp theo id 
 export const read = async (req, res) => {
 
  try {
@@ -72,10 +72,9 @@ export const remove = async (req, res) => {
 
 
 export const update = async (req, res) => {
-    const condition = { id: req.params.id}
-    const update = req.body;
+    
      try {
-        const product = await Product.findOneAndUpdate({condition, update}).exec();
+        const product = await Product.findOneAndUpdate({id: req.params.id}, req.body).exec();
         res.json(product);
         
     } catch (error) {
