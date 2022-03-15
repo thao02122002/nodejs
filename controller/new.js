@@ -20,7 +20,7 @@ export const list = async (req, res) => {
 //lấy ra 1 bài viết theo id
 export const read = async (req, res) => {
     try {
-        const news = await New.findOne({_id: req.params.id}).exec();
+        const news = await New.findOne({_id: req.params.id});
         res.json(news);
         
     } catch (error) {
@@ -48,7 +48,7 @@ export const create = async (req, res) => {
 //update
 export const update = async (req, res) => {
     try {
-        const news = await New.findOneAndUpdate({id: req.params.id}, req.body).exec();
+        const news = await New.findOneAndUpdate({id: req.params.id}, req.body);
         res.json(news);
         
     } catch (error) {
@@ -62,7 +62,7 @@ export const update = async (req, res) => {
 // Xóa
 export const remove = async (req, res) => {
     try {
-        const news = await New.findOneAndDelete({ _id: req.params.id}).exec();
+        const news = await New.findOneAndDelete({ _id: req.params.id});
         res.json(news);
         
     } catch (error) {
