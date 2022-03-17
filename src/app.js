@@ -7,6 +7,7 @@ import morgan from "morgan";
 import mongoose from "mongoose";
 
 import productRouter from '../routes/product';
+import categoryRouter from '../routes/category';
 // import newRouter from '../routes/new';
 import userRouter from '../routes/user';
 //morgan dùng để thông báo khi thực hiện get hay post ... dùng npm i morgan
@@ -19,7 +20,8 @@ app.use(express.json());// phải đứng trc để chuyển kiểu
 // app.use(productRouter);
 // app.use(newRouter);
 app.use(userRouter);
-app.use("/api", productRouter)
+app.use(productRouter)
+app.use(categoryRouter)
 
 // connect databse
 mongoose.connect('mongodb://localhost:27017/web16309')

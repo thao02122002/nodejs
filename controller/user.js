@@ -15,6 +15,7 @@ import User from '../models/user'
   export const signIn = async (req, res) => {
       try {
          const user = await User.findOne({ _id: req.params.id});
+        // const user = await User.findOne({ email: req.params.email});
          res.json(user);
          
      } catch (error) {

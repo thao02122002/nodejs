@@ -14,7 +14,7 @@ router.get('/product',check, list);
 
 router.get('/product/:id', check, read);
 
-router.post('/products', check, create);
+router.post('/product', check, create);
 
 router.delete('/product/:id', check, remove);
 router.patch('/product/:id', check, update );
