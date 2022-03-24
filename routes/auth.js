@@ -4,7 +4,7 @@ import { check } from "../middlewares/check";
 
 const router = Router();
 
-router.post('/user', check, signUp);
-router.get('/user/:id', check, signIn);
+router.post('/signup', check, signUp);
+router.post('/signin', check, signIn);
 
 export default router;

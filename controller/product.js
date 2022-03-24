@@ -4,6 +4,7 @@
 //     ];
  //1 khởi tạo model để kết nối cơ sở dữ liệu
 import Product from '../models/product'
+import slugify from 'slugify';
 //Danh sách sp
 export const list = async (req, res) => {
     
@@ -23,7 +24,7 @@ export const list = async (req, res) => {
 export const read = async (req, res) => {
 
  try {
-        const product = await Product.findOne({ _id: req.params.id});
+        const product = await Product.findOne({ _id: req.params.id}).exec();
         res.json(product);
         
     } catch (error) {
@@ -37,6 +38,7 @@ export const read = async (req, res) => {
 
 //Thêm sp
 export const create = async (req, res) => {
+    req.body.slug = slugify(req.body.name)
     try {
         const product = await new Product(req.body).save();
         res.json(product)    
@@ -50,12 +52,12 @@ export const create = async (req, res) => {
 //Xóa sp
 export const remove = async (req, res) => {
     try {
-        const product = await Product.findOneAndDelete({ _id: req.params.id});
+        const product = await Product.findOneAndDelete({ _id: req.params.id}).exec();
         res.json(product);
         
     } catch (error) {
         res.status(400).json({
-            message: "Xóa"
+            message: "Xóa sp k thành công"
         })
     }
 
@@ -64,14 +66,15 @@ export const remove = async (req, res) => {
 
 
 export const update = async (req, res) => {
+    req.body.slug = slugify(req.body.name)
     
      try {
-        const product = await Product.findOneAndUpdate({id: req.params.id}, req.body);
+        const product = await Product.findOneAndUpdate({_id: req.params.id}, req.body, {new: true}).exec();
         res.json(product);
         
     } catch (error) {
         res.status(400).json({
-            message: "Xóa"
+            message: "update sp k thành công"
         })
     }
     // res.json(product.map(item => item.id == req.params.id ? req.body : item));

@@ -10,13 +10,13 @@ const router = Router();
 
 
 //resfull API
-router.get('/product',check, list);
+router.get('/products',check, list);
 
-router.get('/product/:id', check, read);
+router.get('/products/:id', check, read);
 
-router.post('/product', check, create);
+router.post('/products', check, create);
 
-router.delete('/product/:id', check, remove);
-router.patch('/product/:id', check, update );
+router.delete('/products/:id', check, remove);
+router.put('/products/:id', check, update );
 
 export default router;
