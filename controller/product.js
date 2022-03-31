@@ -43,6 +43,7 @@ export const create = async (req, res) => {
         const product = await new Product(req.body).save();
         res.json(product)    
     } catch (error) {
+        console.log(error)
         res.status(400).json({
             message: "Không thêm được sản phẩm anh ei"
         })
@@ -77,5 +78,12 @@ export const update = async (req, res) => {
             message: "update sp k thành công"
         })
     }
-    // res.json(product.map(item => item.id == req.params.id ? req.body : item));
+    // res.json(product.map(item => item.id == req.params.id ? req.body : item)); 
+}
+
+export const search = async (req, res) => {
+    const searchString = req.query.q
+    console.log(searchString)
+    const result = await Product.find($search).exec()
+    res.json(result);
 }

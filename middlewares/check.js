@@ -20,10 +20,11 @@ export const isAuth = (req, res, next) => {
     console.log("req.profile",req.profile)
     console.log("req.auth",req.auth)
 
-    const status = req.profile_id == req.auth._id
-    if(!status) {
+    const checkAuth = req.profile_id = req.auth._id
+    console.log(checkAuth)
+    if(!checkAuth) {
         res.status(400).json({
-            message: "Bạn không có quyền truy cập"
+            message: "không tìm đc user"
         }) 
     }
     next();

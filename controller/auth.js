@@ -17,7 +17,8 @@ import jwt from 'jsonwebtoken'
            user: {
                _id: user.id,
                email: user.email,
-               name: user.name
+               name: user.name,
+               role: user.role
            }
        })
 
@@ -42,13 +43,15 @@ import jwt from 'jsonwebtoken'
               })
           }
 
-          const token = jwt.sign({_id: user._id}, "123456", {expiresIn: 60 * 60})
+          const token = jwt.sign({_id: user._id}, "123456", {expiresIn: 60 * 60})// đoạn mã jwt vs 3 tham số truyền vào là thông tin của user, đoạn mã mawcjd dịnh , và thời gian có hiệu lực cho cái token đó
+          
           res.json({
               token,
             user: {
                 _id: user.id,
                 email: user.email,
-                name: user.name
+                name: user.name,
+                role: user.role
             }
         })
 
