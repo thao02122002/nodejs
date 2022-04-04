@@ -17,8 +17,8 @@ router.get('/products/:id', check, read);
 
 router.post('/products/:userId', requireSignin ,isAuth, isAdmin, create);
 
-router.delete('/products/:id', check, remove);
-router.put('/products/:id', check, update );
+router.delete('/products/:userId/:id',requireSignin ,isAuth, isAdmin, remove);
+router.put('/products/:userId/:id',requireSignin ,isAuth, isAdmin, update );
 router.post('/search',check, search)
 router.param('userId', userById);
 
