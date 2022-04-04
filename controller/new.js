@@ -1,6 +1,5 @@
-import mongoose from "mongoose";
 
-const New = mongoose.model('New', { name: String, desc: String, detalDesc: String});
+import New from "../models/new"
 
 //list
 export const list = async (req, res) => {
@@ -48,7 +47,7 @@ export const create = async (req, res) => {
 //update
 export const update = async (req, res) => {
     try {
-        const news = await New.findOneAndUpdate({id: req.params.id}, req.body);
+        const news = await New.findOneAndUpdate({id: req.params.id}, req.body, {new:true});
         res.json(news);
         
     } catch (error) {
