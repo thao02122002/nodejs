@@ -1,12 +1,14 @@
 import { Router } from "express";
 import { create, list, read, remove, update } from "../controller/category";
-import { check } from "../middlewares/check";
-
+import { check, isAdmin, isAuth, requireSignin } from "../middlewares/check";
+import { userById } from "../controller/user";
 const router = Router();
 
-router.post("/category", check, create);
+router.post("/category/:userId", requireSignin,isAuth, isAdmin, create);
 router.get("/category/:id",check, read);
 router.get("/category", check, list);
-router.delete("/category/:id", check, remove);
-router.patch('/category/:id', check, update)
+router.delete("/category/:userId/:id",requireSignin,isAuth, isAdmin, remove);
+router.put('/category/:userId/:id',requireSignin,isAuth, isAdmin, update)
+
+router.param('userId', userById)
 export default router;
