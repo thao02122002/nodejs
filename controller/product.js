@@ -80,7 +80,7 @@ export const update = async (req, res) => {
     }
     // res.json(product.map(item => item.id == req.params.id ? req.body : item)); 
 }
-
+// search poduct
 export const search = async (req, res) => {
     
     try {
