@@ -93,3 +93,21 @@ export const search = async (req, res) => {
    
     
 }
+
+export const sort = async (req,res) => {
+    const object = {
+        min: parseInt(req.query.min),
+    max: parseInt(req.query.max) 
+
+    }
+    
+    try {
+        const filter = await Product.find({price : {$gte:object.min, $lte:object.max}})
+        console.log(object.min)
+        console.log(object.max)
+
+        res.json(filter)
+    } catch (error) {
+        
+    }
+}
