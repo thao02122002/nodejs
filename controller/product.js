@@ -94,6 +94,7 @@ export const search = async (req, res) => {
     
 }
 
+//lọc theo giá
 export const sort = async (req,res) => {
     const object = {
         min: parseInt(req.query.min),
@@ -103,10 +104,26 @@ export const sort = async (req,res) => {
     
     try {
         const filter = await Product.find({price : {$gte:object.min, $lte:object.max}})
-        console.log(object.min)
-        console.log(object.max)
 
         res.json(filter)
+    } catch (error) {
+        
+    }
+}
+
+//phân trang
+
+export const pagination = async (req, res) => {
+    try {
+        const objcet = {
+            page: parseInt(req.query.page),
+            limit: parseInt(req.query.limit)
+        }
+        const pagi = await Product.find()
+                    .skip(objcet.page * objcet.limit)
+                    .limit(objcet.limit)
+                    .exec()
+                    res.json(pagi)
     } catch (error) {
         
     }
