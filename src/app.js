@@ -23,6 +23,7 @@ app.use("/api", userRouter);
 app.use("/api", productRouter)
 app.use("/api", categoryRouter)
 
+
 // connect databse
 mongoose.connect('mongodb://localhost:27017/web16309')
 .then(() => console.log("Kết nối db thành công"))

@@ -59,3 +59,18 @@ import jwt from 'jsonwebtoken'
           
       }
   }
+
+  export const ListUser = async (req, res) => {
+    
+    // res.json(product);
+
+    try {
+        const users = await User.find();
+        res.json(users);
+        
+    } catch (error) {
+        res.status(400).json({
+            message: "Lỗi k tìm thấy sản phẩm"
+        })
+    }
+}
