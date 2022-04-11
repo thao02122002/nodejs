@@ -10,6 +10,7 @@ import productRouter from '../routes/product';
 import categoryRouter from '../routes/category';
 import newRouter from '../routes/new';
 import userRouter from '../routes/auth';
+import commentRouter from '../routes/comment'
 //morgan dùng để thông báo khi thực hiện get hay post ... dùng npm i morgan
 
 
@@ -22,6 +23,7 @@ app.use("/api",newRouter);
 app.use("/api", userRouter);
 app.use("/api", productRouter)
 app.use("/api", categoryRouter)
+app.use("/api", commentRouter)
 
 
 // connect databse

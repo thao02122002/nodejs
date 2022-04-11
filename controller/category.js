@@ -22,6 +22,22 @@ export const read = async (req, res) => {
          res.status(400).json(error)
     }
 }
+export const readCate = async (req, res) => {
+
+    try {
+           const category = await Category.findOne({ _id: req.params.id}).exec();
+         
+           res.json(category);
+           // res.json({
+           //     product,
+           //     comment
+           // })
+           
+       } catch (error) {
+           res.status(400).json({
+               message: "Không tìm thấy sp"
+           })
+       }}
 export const list = async (req, res) => {
     try {
          const category = await Category.find();
@@ -44,7 +60,7 @@ export const remove = async (req, res) => {
 
 export const update = async (req, res) => {
     try {
-        const category = await Category.findOneAndUpdate({id: req.params.id}, req.body, {new:true});
+        const category = await Category.findOneAndUpdate({_id: req.params.id}, req.body, {new:true}).exec();
         res.json(category);
     } catch (error) {
          res.status(400).json(error)

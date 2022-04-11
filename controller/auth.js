@@ -74,3 +74,31 @@ import jwt from 'jsonwebtoken'
         })
     }
 }
+
+export const UpdateUser = async (req, res) => {
+    try {
+        const user = await User.findOneAndUpdate({_id:req.params.id}, req.body, {new: true}).exec()
+        res.json(user)
+    } catch (error) {
+        res.status(400).json({
+            message: "update user k thành công"
+        })
+    }
+}
+
+export const ReadUser = async (req, res) => {
+
+    try {
+           const user = await User.findOne({ _id: req.params.id}).exec();
+         
+           res.json(user);
+           // res.json({
+           //     product,
+           //     comment
+           // })
+           
+       } catch (error) {
+           res.status(400).json({
+               message: "Không tìm thấy sp"
+           })
+       }}

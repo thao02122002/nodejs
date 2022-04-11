@@ -5,6 +5,7 @@
  //1 khởi tạo model để kết nối cơ sở dữ liệu
 import Product from '../models/product'
 import slugify from 'slugify';
+import Comment from '../models/comment'
 //Danh sách sp
 export const list = async (req, res) => {
     
@@ -12,6 +13,7 @@ export const list = async (req, res) => {
 
     try {
         const products = await Product.find();
+        
         res.json(products);
         
     } catch (error) {
@@ -25,7 +27,12 @@ export const read = async (req, res) => {
 
  try {
         const product = await Product.findOne({ _id: req.params.id}).exec();
+        const comment = await Comment.find({product}).exec()
         res.json(product);
+        // res.json({
+        //     product,
+        //     comment
+        // })
         
     } catch (error) {
         res.status(400).json({
