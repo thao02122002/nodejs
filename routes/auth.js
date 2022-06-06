@@ -6,7 +6,7 @@ import {userById} from '../controller/user'
 const router = Router();
 
 router.post('/signup', check, signUp);
-router.post('/signin', check, signIn);
+router.post('/signin', signIn);
 router.get('/users', check, ListUser);
 router.get('/user/:id', check, ReadUser);
 router.patch('/user/:id',UpdateUser);

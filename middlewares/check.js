@@ -20,7 +20,7 @@ export const isAuth = (req, res, next) => {
     console.log("req.profile",req.profile)
     console.log("req.auth",req.auth)
 
-    const checkAuth = req.profile_id = req.auth._id
+    const checkAuth = req.profile._id = req.auth._id
     console.log(checkAuth)
     if(!checkAuth) {
         res.status(400).json({

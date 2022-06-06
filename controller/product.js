@@ -45,7 +45,7 @@ export const read = async (req, res) => {
 
 //Thêm sp
 export const create = async (req, res) => {
-    req.body.slug = slugify(req.body.name)
+    // req.body.slug = slugify(req.body.name)
     try {
         const product = await new Product(req.body).save();
         res.json(product)    
@@ -74,7 +74,7 @@ export const remove = async (req, res) => {
 
 
 export const update = async (req, res) => {
-    req.body.slug = slugify(req.body.name)
+    // req.body.slug = slugify(req.body.name)
     
      try {
         const product = await Product.findOneAndUpdate({_id: req.params.id}, req.body, {new: true}).exec();

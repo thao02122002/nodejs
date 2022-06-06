@@ -15,10 +15,12 @@ router.get('/products',check, list);
 
 router.get('/products/:id', check, read);
 
-router.post('/products/:userId', requireSignin ,isAuth, isAdmin, create);
-
-router.delete('/products/:userId/:id',requireSignin ,isAuth, isAdmin, remove);
-router.put('/products/:userId/:id',requireSignin ,isAuth, isAdmin, update );
+// router.post('/products/:userId', requireSignin ,isAuth, isAdmin, create);
+router.post('/products', create);
+// router.delete('/products/:userId/:id',requireSignin ,isAuth, isAdmin, remove);
+router.delete('/products/:id', remove);
+// router.put('/products/:userId/:id',requireSignin ,isAuth, isAdmin, update );
+router.patch('/products/:id', update );
 router.post('/search',check, search)
 router.get('/filter', sort)
 router.get('/pagination', pagination)

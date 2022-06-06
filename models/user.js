@@ -3,7 +3,7 @@ import { createHmac} from "crypto";
 const userSchema = new Schema({
     name: {
       type: String,
-      required: true,
+    //   required: true,
       minlength: 15
     },
     email: {
