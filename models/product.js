@@ -2,30 +2,33 @@ import mongoose, { Schema, ObjectId } from "mongoose";
 const productSchema = new Schema({
     name: {
        type: String,
-    //    required: true,
+       required: true,
        index: true
     },
     status: {
         type: Number,
-     //    required: true,
-        // index: true
+        required: true,
      },
     price: {
         type: Number,
-        // required: true
+        required: true
      },
-     quantity: {
-        type: Number,
-        // required: true
+     salePrice: {
+       type: Number,
+       required: true
      },
+    //  quantity: {
+    //     type: Number,
+    //     required: true
+    //  },
     description: {
         type: String,
-        // required: true
+        required: true
 
     },
-    descriptionDetail: {
+    imageUrl: {
         type: String,
-        // required: true
+        required: true
 
     },
      slug: {

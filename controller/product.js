@@ -4,8 +4,8 @@
 //     ];
  //1 khởi tạo model để kết nối cơ sở dữ liệu
 import Product from '../models/product'
-import slugify from 'slugify';
 import Comment from '../models/comment'
+import slugify from 'slugify';
 //Danh sách sp
 export const list = async (req, res) => {
     
@@ -45,7 +45,8 @@ export const read = async (req, res) => {
 
 //Thêm sp
 export const create = async (req, res) => {
-    // req.body.slug = slugify(req.body.name)
+    req.body.slug = slugify(req.body.name)
+
     try {
         const product = await new Product(req.body).save();
         res.json(product)    
